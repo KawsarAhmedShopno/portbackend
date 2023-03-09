@@ -39,32 +39,34 @@ class ProjectController extends Controller
     {  $validdata=$request->validate([
         'project_name'=> 'required' ,
         'project_description'=> 'required' ,
-        'project_features'=> 'required' ,
+     
         'live_preview'=> 'required' ,
-        'img_one'=> 'required' ,
-        'img_two'=> 'required' 
+        'img'=> 'required' ,
+       
        ]);
     
-       $image=$request->file('img_one');
+       $image=$request->file('img');
        $filename=hexdec(uniqid()).'.'.$image->getClientOriginalName();
        $image->move(public_path('upload/images/'),$filename);
        $url='http://127.0.0.1:8000/upload/images/'.$filename;
-        $image1=$request->file('img_two');
-       $filename1=hexdec(uniqid()).'.'.$image1->getClientOriginalName();
-       $image1->move(public_path('upload/images/'),$filename1);
-       $url1='http://127.0.0.1:8000/upload/images/'.$filename1;
+       
   $data['project_name'] = $request->project_name;
   $data['project_description'] = $request->project_description;
-   $data['project_features'] = $request->project_features;
+
     $data['live_preview'] = $request->live_preview;
-  $data['img_one'] = $url;
-  $data['img_two'] = $url1;
+  $data['img'] = $url;
+
        Project::create($data);
 
  
+       $notification = array(
+        'message' => 'Project Created Successfully',
+        'alert-type' => 'success'
+    );
 
- return redirect()->route('project.index');
-    }
+    return redirect()->route('project.index')->with($notification);
+}
+
 
     /**
      * Display the specified resource.
@@ -98,25 +100,28 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-       if ($request->file('img_one')){    $image=$request->file('img_one');
+       if ($request->file('img')){    $image=$request->file('img');
        $filename=hexdec(uniqid()).'.'.$image->getClientOriginalName();
        $image->move(public_path('upload/images/'),$filename);
        $url='http://127.0.0.1:8000/upload/images/'.$filename;
-        $image1=$request->file('img_two');
-       $filename1=hexdec(uniqid()).'.'.$image1->getClientOriginalName();
-       $image1->move(public_path('upload/images/'),$filename1);
-       $url1='http://127.0.0.1:8000/upload/images/'.$filename1;
+       $data['img'] = $url;}
   $data['project_name'] = $request->project_name;
   $data['project_description'] = $request->project_description;
-   $data['project_features'] = $request->project_features;
+   
     $data['live_preview'] = $request->live_preview;
-  $data['img_one'] = $url;
-  $data['img_two'] = $url1;
+
+       
         $service= Project::find($id);
         $service->update($data);
-         return redirect()->route('project.index');
+        $notification = array(
+            'message' => 'Project Updated Successfully',
+            'alert-type' => 'success'
+        );
+    
+        return redirect()->route('project.index')->with($notification);
+       
     }
-    }
+       
     /**
      * Remove the specified resource from storage.
      *
@@ -128,7 +133,11 @@ class ProjectController extends Controller
          $project = Project::find($id);
     
         $project->delete();
-        
-         return redirect()->route('project.index');
+        $notification = array(
+            'message' => 'Project Updated Successfully',
+            'alert-type' => 'warning'
+        );
+    
+        return redirect()->route('project.index')->with($notification);
     }
 }

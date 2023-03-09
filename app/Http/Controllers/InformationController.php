@@ -37,20 +37,30 @@ class InformationController extends Controller
      */
     public function store(Request $request)
     {  $validdata=$request->validate([
-        'about'=> 'required' ,
-        'refund'=> 'required' ,
-        'terms'=> 'required' ,
-        'privacy'=> 'required' ,
-        'who'=> 'required' ,
-        'vission'=> 'required' ,
-        'mission'=> 'required' ,
-        'company'=> 'required' ,
-       ]);
+        'introduction'=> 'required' ,
+        'tech'=> 'required' ,
+        'aboutMe'=> 'required' ,
+        'aboutCaption'=> 'required' ,
+        'email'=> 'required' ,
+        'aboutImg'=> 'required' 
+    ]);
                
-  $data = $request->all();
+    $image=$request->file('aboutImg');
+    $filename=hexdec(uniqid()).'.'.$image->getClientOriginalName();
+    $image->move(public_path('upload/images/'),$filename);
+    $url='http://127.0.0.1:8000/upload/images/'.$filename;
+$data['introduction'] = $request->introduction;
+$data['tech'] = $request->tech;
+$data['aboutMe'] = $request->aboutMe;
+$data['aboutCaption'] = $request->aboutCaption;
+$data['email'] = $request->email;
+$data['aboutImg'] = $url;
         Information::create($data);
-
- return redirect()->route('information.index');
+        $notification = array(
+    		'message' => 'information Created Successfully',
+    		'alert-type' => 'success'
+    	);
+ return redirect()->route('information.index')->with($notification);
     }
 
     /**
@@ -84,11 +94,33 @@ class InformationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-             $data = $request->all();
-        $info = Information::find($id);
-        $info->update($data);
-         return redirect()->route('information.index');
+    {  $validdata=$request->validate([
+        'introduction'=> 'required' ,
+        'tech'=> 'required' ,
+        'aboutMe'=> 'required' ,
+        'aboutCaption'=> 'required' ,
+        'email'=> 'required' ,
+        'aboutImg'=> 'required' 
+    ]);
+               
+    if ($image=$request->file('aboutImg')){$image=$request->file('aboutImg');
+    $filename=hexdec(uniqid()).'.'.$image->getClientOriginalName();
+    $image->move(public_path('upload/images/'),$filename);
+    $url='http://127.0.0.1:8000/upload/images/'.$filename;
+$data['introduction'] = $request->introduction;
+$data['tech'] = $request->tech;
+$data['aboutMe'] = $request->aboutMe;
+$data['aboutCaption'] = $request->aboutCaption;
+$data['email'] = $request->email;
+$data['aboutImg'] = $url;
+    }
+    $info= Information::find($id);
+    $info->update($data);
+        $notification = array(
+    		'message' => 'information Updated Successfully',
+    		'alert-type' => 'success'
+    	);
+ return redirect()->route('information.index')->with($notification);
     }
 
     /**
@@ -101,6 +133,10 @@ class InformationController extends Controller
     {
          $info = Information::find($id);
         $info->delete();
-         return redirect()->route('information.index');
+        $notification = array(
+    		'message' => 'Information Deleted Successfully',
+    		'alert-type' => 'warning'
+    	);
+         return redirect()->route('information.index')->with($notification);
     }
 }

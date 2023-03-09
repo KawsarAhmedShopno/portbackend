@@ -35,15 +35,7 @@
             @enderror
 
             </div>
-               <div class="form-group">
-            <label class="info-title">project features </label>
-         <textarea class="form-control" name='project_features' rows="4" id="comment"></textarea>
-       
-          @error('project_features')
-            <span class="text-danger">{{ $message }}</span>
-            @enderror
-
-            </div>
+          
              <div class="form-group">
                 <label class="info-title">live preview </label>
          <input type="text" name="live_preview" class="form-control input-default "  >
@@ -55,22 +47,14 @@
         
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                 <span class="input-group-text">image one</span>
+                 <span class="input-group-text">image </span>
                 </div>
                 <div class="custom-file">
-        <input type="file" name="img_one" class="custom-file-input" id="image">
+        <input type="file" name="img" class="custom-file-input" id="image">
                     <label class="custom-file-label">Choose file</label>
                 </div>
             </div>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                 <span class="input-group-text">image two</span>
-                </div>
-                <div class="custom-file">
-        <input type="file" name="img_two" class="custom-file-input" id="image">
-                    <label class="custom-file-label">Choose file</label>
-                </div>
-            </div>
+             
 
 
             <div class="form-group">

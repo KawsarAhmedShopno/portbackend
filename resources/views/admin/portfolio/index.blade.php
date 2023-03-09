@@ -3,48 +3,18 @@
 @section('admin')
 <div class="content-body">
 			<div class="container-fluid">
-				<!-- Add Project -->
-				<div class="modal fade" id="addProjectSidebar">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title">Create Project</h5>
-								<button type="button" class="close" data-dismiss="modal"><span>&times;</span>
-								</button>
-							</div>
-							<div class="modal-body">
-								<form>
-									<div class="form-group">
-										<label class="text-black font-w500">Project Name</label>
-										<input type="text" class="form-control">
-									</div>
-									<div class="form-group">
-										<label class="text-black font-w500">Deadline</label>
-										<input type="date" class="form-control">
-									</div>
-									<div class="form-group">
-										<label class="text-black font-w500">Client Name</label>
-										<input type="text" class="form-control">
-									</div>
-									<div class="form-group">
-										<button type="button" class="btn btn-primary">CREATE</button>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
+				
                 <div class="row page-titles mx-0">
                     <div class="col-sm-6 p-md-0">
                         <div class="welcome-text">
                             <h4>Hi, welcome back!</h4>
-                            <p class="mb-0">Your business dashboard template</p>
+                            <p class="mb-0">Your  dashboard </p>
                         </div>
                     </div>
                     <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Table</a></li>
-                            <li class="breadcrumb-item active"><a href="javascript:void(0)">Bootstrap</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                            <li class="breadcrumb-item active"><a href="javascript:void(0)">portfolio</a></li>
                         </ol>
                     </div>
                 </div>
@@ -54,7 +24,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">All Project</h4>
+                                <h4 class="card-title">All Portfolio</h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -62,25 +32,25 @@
                                         <thead>
                                             <tr>
                                                 <th style="width:80px;"><strong>#</strong></th>
-                                                <th><strong>project_name</strong></th>
-                                                <th><strong>project_description</strong></th>
-                                                
-                                           <th><strong>img_one</strong></th>
+                                                <th><strong>frontend</strong></th>
+                                                <th><strong>backend</strong></th>
+                                                <th><strong>maintainance</strong></th>
+                                                <th><strong> 	webdesign</strong></th>
                                                 
                                                 <th><strong>Action</strong></th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                            @if(count($project)>0)
+                                            @if(count($port)>0)
                                                 
-                                                @foreach($project as $project)
+                                                @foreach($port as $port)
                                                 <td><strong>01</strong></td>
-                                                <td>{{$project->project_name}}</td>
-                                                <td>{{$project->project_description}}</td>
-                                           
-                                                
-                                                <td><img src="{{ asset($project->img) }}"width=100px></td>
+                                                <td> <img src="{{ asset($port-> 	webdesign) }}" style="width: 70px; height: 40px;"></td>
+                                                <td> <img src="{{ asset($port-> 	backend) }}" style="width: 70px; height: 40px;"></td>
+                                                <td> <img src="{{ asset($port-> 	maintainance) }}" style="width: 70px; height: 40px;"></td>
+                                                <td> <img src="{{ asset($port-> 	webdesign) }}" style="width: 70px; height: 40px;"></td>
+                                               
                                                 
                                                
                                                 <td>
@@ -89,8 +59,8 @@
 															<svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><circle fill="#000000" cx="5" cy="12" r="2"/><circle fill="#000000" cx="12" cy="12" r="2"/><circle fill="#000000" cx="19" cy="12" r="2"/></g></svg>
 														</button>
 														<div class="dropdown-menu">
-															<a class="dropdown-item" href="{{ route('project.edit',[$project->id]) }}">Edit</a>
-															<div class="dropdown-item" >  <form action="{{ route('project.destroy',[$project->id]) }}" method="post">@csrf
+															<a class="dropdown-item" href="{{ route('service.edit',[$service->id]) }}">Edit</a>
+															<div class="dropdown-item" >  <form action="{{ route('service.destroy',[$service->id]) }}" method="post">@csrf
                                 {{method_field('DELETE')}}
                                 
                                 <button >

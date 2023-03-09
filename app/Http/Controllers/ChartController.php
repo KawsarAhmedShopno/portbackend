@@ -44,8 +44,12 @@ class ChartController extends Controller
                
   $data = $request->all();
        Chart::create($data);
+       $notification = array(
+        'message' => 'Chart Created Successfully',
+        'alert-type' => 'success'
+    );
 
- return redirect()->route('chart.index');
+ return redirect()->route('chart.index')->with($notification);
     }
 
     /**
@@ -83,7 +87,12 @@ class ChartController extends Controller
              $data = $request->all();
         $info = Chart::find($id);
         $info->update($data);
-         return redirect()->route('chart.index');
+        $notification = array(
+            'message' => 'Chart Updated Successfully',
+            'alert-type' => 'success'
+        );
+    
+     return redirect()->route('chart.index')->with($notification);
     }
 
     /**
@@ -96,6 +105,11 @@ class ChartController extends Controller
     {
          $info = Chart::find($id);
         $info->delete();
-         return redirect()->route('chart.index');
+        $notification = array(
+            'message' => 'Chart Deleted Successfully',
+            'alert-type' => 'warning'
+        );
+    
+     return redirect()->route('chart.index')->with($notification);
     }
 }

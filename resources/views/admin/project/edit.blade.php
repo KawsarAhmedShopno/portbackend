@@ -9,7 +9,7 @@
                     <div class="col-xl-12 col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Edit Service </h4>
+                                <h4 class="card-title">Edit Project </h4>
                             </div>
                             <div class="card-body">
                                 <div class="basic-form">
@@ -19,7 +19,7 @@
             {{ method_field('PUT') }}
                <div class="form-group">
                 <label class="info-title">project name </label>
-         <input type="text" name="project_name" class="form-control input-default "  >
+         <input type="text" name="project_name" class="form-control input-default " value="{{$project->project_name}}" >
             @error('project_name')
             <span class="text-danger">{{ $message }}</span>
             @enderror
@@ -27,25 +27,17 @@
             </div>
          <div class="form-group">
             <label class="info-title">project description </label>
-         <textarea class="form-control" name='project_description' rows="4" id="comment"></textarea>
+         <textarea class="form-control" name='project_description' rows="4" id="comment">{{$project-> 	project_description}} </textarea>
        
           @error('project_description')
             <span class="text-danger">{{ $message }}</span>
             @enderror
 
             </div>
-               <div class="form-group">
-            <label class="info-title">project features </label>
-         <textarea class="form-control" name='project_features' rows="4" id="comment"></textarea>
-       
-          @error('project_features')
-            <span class="text-danger">{{ $message }}</span>
-            @enderror
-
-            </div>
+               
              <div class="form-group">
                 <label class="info-title">live preview </label>
-         <input type="text" name="live_preview" class="form-control input-default "  >
+         <input type="text" name="live_preview" class="form-control input-default "value="{{$project->live_preview }}"   >
             @error('live_preview')
             <span class="text-danger">{{ $message }}</span>
             @enderror
@@ -54,30 +46,21 @@
         
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                 <span class="input-group-text">image one</span>
+                 <span class="input-group-text">image</span>
                 </div>
                 <div class="custom-file">
-        <input type="file" name="img_one" class="custom-file-input" id="image">
+        <input type="file" name="img" class="custom-file-input" id="image">
                     <label class="custom-file-label">Choose file</label>
                 </div>
             </div>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                 <span class="input-group-text">image two</span>
-                </div>
-                <div class="custom-file">
-        <input type="file" name="img_two" class="custom-file-input" id="image">
-                    <label class="custom-file-label">Choose file</label>
-                </div>
-            </div>
+           
 
 
             <div class="form-group">
-               <img id="showImage" src="{{(!empty($service->service_logo))?url('upload/service_images/'.$service->service_logo):url('upload//no_image.jpg')}}" class="img-fluid rounded-circle" alt="" style="width: 100px; height: 100px;">
-            </div>
+               <img id="showImage" src="{{ asset($project->img ) }}"class="img-fluid rounded-circle" alt="" style="width: 100px; height: 100px;">
 
 
-        
+</div>
             
      
 
