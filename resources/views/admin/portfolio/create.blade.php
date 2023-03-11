@@ -22,11 +22,15 @@
                 <div class="input-group-prepend">
                  <span class="input-group-text">frontend </span>
                 </div>
+              
                 <div class="custom-file">
         <input type="file" name="frontend" class="custom-file-input" id="image">
                     <label class="custom-file-label">Choose file</label>
                 </div>
             </div>
+            @error('frontend')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                  <span class="input-group-text">backend</span>
@@ -36,6 +40,9 @@
                     <label class="custom-file-label">Choose file</label>
                 </div>
             </div>
+            @error('backend')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                  <span class="input-group-text">maintainance</span>
@@ -45,30 +52,10 @@
                     <label class="custom-file-label">Choose file</label>
                 </div>
             </div>
-        
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                 <span class="input-group-text"> 	webdesign</span>
-                </div>
-                <div class="custom-file">
-        <input type="file" name="webdesign" class="custom-file-input" id="image">
-                    <label class="custom-file-label">Choose file</label>
-                </div>
-            </div>
-
-
-            
-
-
-        
-            
-     
-
-
-   
-
-
-
+            @error('maintainance')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+  
 
            <input type="submit" class="btn btn-secondary" value="create">
             

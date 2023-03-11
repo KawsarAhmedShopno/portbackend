@@ -35,7 +35,7 @@
                                                 <th><strong>frontend</strong></th>
                                                 <th><strong>backend</strong></th>
                                                 <th><strong>maintainance</strong></th>
-                                                <th><strong> 	webdesign</strong></th>
+                                            
                                                 
                                                 <th><strong>Action</strong></th>
                                             </tr>
@@ -45,11 +45,11 @@
                                             @if(count($port)>0)
                                                 
                                                 @foreach($port as $port)
-                                                <td><strong>01</strong></td>
-                                                <td> <img src="{{ asset($port-> 	webdesign) }}" style="width: 70px; height: 40px;"></td>
+                                                <td><strong></strong></td>
+                                                <td> <img src="{{ asset($port-> 	frontend) }}" style="width: 70px; height: 40px;"></td>
                                                 <td> <img src="{{ asset($port-> 	backend) }}" style="width: 70px; height: 40px;"></td>
                                                 <td> <img src="{{ asset($port-> 	maintainance) }}" style="width: 70px; height: 40px;"></td>
-                                                <td> <img src="{{ asset($port-> 	webdesign) }}" style="width: 70px; height: 40px;"></td>
+                                          
                                                
                                                 
                                                
@@ -59,8 +59,8 @@
 															<svg width="20px" height="20px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><circle fill="#000000" cx="5" cy="12" r="2"/><circle fill="#000000" cx="12" cy="12" r="2"/><circle fill="#000000" cx="19" cy="12" r="2"/></g></svg>
 														</button>
 														<div class="dropdown-menu">
-															<a class="dropdown-item" href="{{ route('service.edit',[$service->id]) }}">Edit</a>
-															<div class="dropdown-item" >  <form action="{{ route('service.destroy',[$service->id]) }}" method="post">@csrf
+															
+															<div class="dropdown-item" >  <form action="{{ route('portfolio.destroy',[$port->id]) }}" method="post">@csrf
                                 {{method_field('DELETE')}}
                                 
                                 <button >

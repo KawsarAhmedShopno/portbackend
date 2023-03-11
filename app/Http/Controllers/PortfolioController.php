@@ -39,28 +39,40 @@ class PortfolioController extends Controller
          */
         public function store(Request $request)
         {  $validdata=$request->validate([
-            'introduction'=> 'required' ,
-            'tech'=> 'required' ,
-            'aboutMe'=> 'required' ,
-            'aboutCaption'=> 'required' ,
-            'aboutImg'=> 'required' 
+          
+            'frontend'=> 'required' ,
+            'backend'=> 'required' ,
+            'maintainance'=> 'required'  
+           
+            
         ]);
                    
-        $image=$request->file('aboutImg');
-        $filename=hexdec(uniqid()).'.'.$image->getClientOriginalName();
-        $image->move(public_path('upload/images/'),$filename);
-        $url='http://127.0.0.1:8000/upload/images/'.$filename;
-    $data['introduction'] = $request->introduction;
-    $data['tech'] = $request->tech;
-    $data['aboutMe'] = $request->aboutMe;
-    $data['aboutCaption'] = $request->aboutCaption;
-    $data['aboutImg'] = $url;
+
+    
+        $image1=$request->file('frontend');
+        $filename1=hexdec(uniqid()).'.'.$image1->getClientOriginalName();
+        $image1->move(public_path('upload/images/'),$filename1);
+        $url1='http://127.0.0.1:8000/upload/images/'.$filename1;
+        $image2=$request->file('backend');
+        $filename2=hexdec(uniqid()).'.'.$image2->getClientOriginalName();
+        $image2->move(public_path('upload/images/'),$filename2);
+        $url2='http://127.0.0.1:8000/upload/images/'.$filename2;
+        $image3=$request->file('maintainance');
+        $filename3=hexdec(uniqid()).'.'.$image3->getClientOriginalName();
+        $image3->move(public_path('upload/images/'),$filename3);
+        $url3='http://127.0.0.1:8000/upload/images/'.$filename3;
+      
+   
+    $data['frontend'] = $url1;
+    $data['backend'] = $url2;
+    $data['maintainance'] = $url3;
     Portfolio::create($data);
             $notification = array(
-                'message' => 'information Created Successfully',
+                'message' => 'portfolio Created Successfully',
                 'alert-type' => 'success'
             );
      return redirect()->route('portfolio.index')->with($notification);
+          
         }
     
         /**
@@ -94,31 +106,10 @@ class PortfolioController extends Controller
          * @return \Illuminate\Http\Response
          */
         public function update(Request $request, $id)
-        {  $validdata=$request->validate([
-            'introduction'=> 'required' ,
-            'tech'=> 'required' ,
-            'aboutMe'=> 'required' ,
-            'aboutCaption'=> 'required' ,
-            'aboutImg'=> 'required' 
-        ]);
+        { 
                    
-        if ($image=$request->file('aboutImg')){$image=$request->file('aboutImg');
-        $filename=hexdec(uniqid()).'.'.$image->getClientOriginalName();
-        $image->move(public_path('upload/images/'),$filename);
-        $url='http://127.0.0.1:8000/upload/images/'.$filename;
-    $data['introduction'] = $request->introduction;
-    $data['tech'] = $request->tech;
-    $data['aboutMe'] = $request->aboutMe;
-    $data['aboutCaption'] = $request->aboutCaption;
-    $data['aboutImg'] = $url;
-        }
-        $port= Portfolio::find($id);
-        $port->update($data);
-            $notification = array(
-                'message' => 'information Updated Successfully',
-                'alert-type' => 'success'
-            );
-     return redirect()->route('portfolio.index')->with($notification);
+            $port=Portfolio::latest()->get();
+            return view('admin.portfolio.index',compact('port'));
         }
     
         /**
@@ -132,7 +123,7 @@ class PortfolioController extends Controller
              $port = Portfolio::find($id);
             $port->delete();
             $notification = array(
-                'message' => 'Information Deleted Successfully',
+                'message' => 'portfilio Deleted Successfully',
                 'alert-type' => 'warning'
             );
              return redirect()->route('portfolio.index')->with($notification);

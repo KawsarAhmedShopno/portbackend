@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('frontend');
             $table->string('backend');
             $table->string('maintainance');
-            $table->string('webdesign');
+            
             $table->timestamps();
         });
     }

@@ -14,6 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+
+Route::get('/portfolio',[App\Http\Controllers\ApiController::class,'allSelectPortfolio']);
+
+Route::get('/project',[App\Http\Controllers\ApiController::class,'projectSelect']);
+
+Route::get('/information',[App\Http\Controllers\ApiController::class,'allSelectInformation']);
+
+Route::post('/contactsend',[App\Http\Controllers\ApiController::class,'create']);
+Route::get('/contact',[App\Http\Controllers\ApiController::class,'allContact']);
+Route::get('/service',[App\Http\Controllers\ApiController::class,'allSelectService']);
+
+Route::get('/chart',[App\Http\Controllers\ApiController::class,'allSelectChart']);
