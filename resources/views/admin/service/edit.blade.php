@@ -35,14 +35,13 @@
 
             </div>
         
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                 <span class="input-group-text">Upload</span>
-                </div>
-                <div class="custom-file">
-        <input type="file" name="service_logo" class="custom-file-input" id="image">
-                    <label class="custom-file-label">Choose file</label>
-                </div>
+            <div class="form-group">
+                <label class="info-title"> Icon </label>
+         <input type="text" name="icon" class="form-control input-default " value="{{$service->service_icon}}" >
+            @error('icon')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
+
             </div>
 
 

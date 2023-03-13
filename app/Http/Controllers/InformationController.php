@@ -41,7 +41,8 @@ class InformationController extends Controller
         'tech'=> 'required' ,
         'aboutMe'=> 'required' ,
         'aboutCaption'=> 'required' ,
-        'email'=> 'required' ,
+        'fb'=> 'required' ,
+        'git'=> 'required' ,
         'aboutImg'=> 'required' 
     ]);
                
@@ -53,7 +54,8 @@ $data['introduction'] = $request->introduction;
 $data['tech'] = $request->tech;
 $data['aboutMe'] = $request->aboutMe;
 $data['aboutCaption'] = $request->aboutCaption;
-$data['email'] = $request->email;
+$data['fb'] = $request->fb;
+$data['git'] = $request->git;
 $data['aboutImg'] = $url;
         Information::create($data);
         $notification = array(
@@ -94,14 +96,7 @@ $data['aboutImg'] = $url;
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {  $validdata=$request->validate([
-        'introduction'=> 'required' ,
-        'tech'=> 'required' ,
-        'aboutMe'=> 'required' ,
-        'aboutCaption'=> 'required' ,
-        'email'=> 'required' ,
-        'aboutImg'=> 'required' 
-    ]);
+    {  
                
     if ($image=$request->file('aboutImg')){$image=$request->file('aboutImg');
     $filename=hexdec(uniqid()).'.'.$image->getClientOriginalName();
@@ -111,7 +106,8 @@ $data['introduction'] = $request->introduction;
 $data['tech'] = $request->tech;
 $data['aboutMe'] = $request->aboutMe;
 $data['aboutCaption'] = $request->aboutCaption;
-$data['email'] = $request->email;
+$data['fb'] = $request->fb;
+$data['git'] = $request->git;
 $data['aboutImg'] = $url;
     }
     $info= Information::find($id);

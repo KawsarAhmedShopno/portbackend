@@ -39,17 +39,14 @@ class ServiceController extends Controller
     {  $validdata=$request->validate([
         'name'=> 'required' ,
         'description'=> 'required' ,
-        'service_logo'=> 'required' 
+        'icon'=> 'required' 
         
        ]);
     
-      $image=$request->file('service_logo');
-       $filename=hexdec(uniqid()).'.'.$image->getClientOriginalName();
-       $image->move(public_path('upload/images/'),$filename);
-       $url='http://127.0.0.1:8000/upload/images/'.$filename;
+     
   $data['service_name'] = $request->name;
   $data['service_description'] = $request->description;
-  $data['service_logo'] = $url;
+  $data['service_icon'] =  $request->icon;
        Service::create($data);
 
  

@@ -34,7 +34,7 @@
                                                 <th style="width:80px;"><strong>#</strong></th>
                                                 <th><strong>service_name</strong></th>
                                                 <th><strong>service_description</strong></th>
-                                                <th><strong>service_logo</strong></th>
+                                                <th><strong>service_Icon</strong></th>
                                          
                                                 
                                                 <th><strong>Action</strong></th>
@@ -48,7 +48,7 @@
                                                 <td><strong>01</strong></td>
                                                 <td>{{$service->service_name}}</td>
                                                 <td>{{$service->service_description}}</td>
-                                                <td> <img src="{{ asset($service->service_logo) }}" style="width: 70px; height: 40px;"></td>
+                                                <td> {{ $service->service_icon }}</td>
                                                
                                                 
                                                

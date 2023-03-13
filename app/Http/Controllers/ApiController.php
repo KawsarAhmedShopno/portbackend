@@ -19,23 +19,26 @@ class ApiController extends Controller
         return $result;
     }
    
-        public function create(Request $request){
-        $contactarry=json_decode($request->getContent(),true);
-        $name=$contactarry['name'];
-        $email=$contactarry['email'];
-        $message=$contactarry['message'];
-        $result=Contact::create([
-            'name'=>$name,
-            'email'=>$email,
-            'message'=>$message,
-
-        ]);
-        if ($result == true){
-            return 'success';
-        }else{
-            return 'failed';
+    public function create(Request $request) {
+        try {
+            $data = $request->validate([
+                'name' => 'required|string',
+                'email' => 'required|email',
+                'message' => 'required|string'
+            ]);
+    
+            $contact = Contact::create($data);
+    
+            return response()->json([
+                'success' => true,
+                'message' => 'Message sent'
+            ], 201);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error creating contact: ' . $e->getMessage()
+            ], 500);
         }
-
     }
    
    

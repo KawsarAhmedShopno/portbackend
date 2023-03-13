@@ -14,11 +14,16 @@ return new class extends Migration
         Schema::create('information', function (Blueprint $table) {
             $table->id();
                $table->string('introduction');  
-               $table->string('email');    
+         
              $table->string('tech');
             $table->string('aboutImg');       
             $table->string('aboutMe');
             $table->string('aboutCaption');
+            $table->string('fb');
+            $table->string('git');
+            $table->string('address');
+            $table->string('phone');
+            $table->string('infoemail');
             $table->timestamps();
         });
     }

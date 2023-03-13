@@ -41,7 +41,8 @@
 											<tr>
 												<th style="width:80px;"><strong>#</strong></th>
 												<th><strong>Introduction</strong></th>
-												<th><strong>email</strong></th>
+												<th><strong>fblink</strong></th>
+												<th><strong>gitlink</strong></th>
 												<th><strong>tech </strong></th>
 												<th><strong>aboutMe</strong></th>
 												<th><strong>aboutCaption</strong></th>
@@ -62,7 +63,8 @@
 												@foreach($info as $info)
 												<td><strong>01</strong></td>
 												<td>{{Str::limit($info->introduction, 50)}}</td>
-												<td>{{$info->email}}</td>
+												<td>{{$info->fb}}</td>
+												<td>{{$info->git}}</td>
 												<td>{{Str::limit($info->tech, 50)}}</td>
 												<td>{{Str::limit($info->aboutMe, 50)}}</td>
 												

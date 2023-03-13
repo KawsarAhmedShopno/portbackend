@@ -26,10 +26,19 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <label class="info-title">email </label>
-                                    <textarea class="form-control" name='email' rows="4" id="comment"></textarea>
+                                    <label class="info-title">Fblink </label>
+                                    <input class="form-control" name='fb' rows="4" id="comment">
 
-                                    @error('email')
+                                    @error('fb')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="info-title">gitlink </label>
+                                    <input class="form-control" name='git' rows="4" id="comment">
+
+                                    @error('git')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
 
